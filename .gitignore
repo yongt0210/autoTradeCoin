@@ -1,0 +1,12 @@
+# 환경설정 파일 제외
+.env
+
+# python 가상환경 설정 디렉토리 제외
+**venv
+
+# pycache 제외
+**__pycache__
+
+# 테스트 파일 제외
+test.py
+back_test.py
