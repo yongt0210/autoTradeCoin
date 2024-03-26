@@ -10,10 +10,6 @@ class Bithumb:
     def __init__(self):
         self.connect_key = CONNECT_KEY
         self.secret_key = SECRET_KEY
-
-    # 소수점 4자리 반올림
-    def unit_floor(self, unit):
-        return math.floor(unit * 10000) / 10000
     
     # nonce 값 구하기
     def get_nonce_time(self):

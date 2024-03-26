@@ -46,9 +46,7 @@ def makeDataFrame(data, interval="24h"):
     return df
 
 # 매수 시점 
-def generate_signals(data, window=5, k=0.5):
-    df = makeDataFrame(data)
-
+def generate_signals(df, window=5, k=0.5):
     # 변동률
     df["range"] = df["high"] - df["low"]
 
@@ -63,6 +61,6 @@ def generate_signals(data, window=5, k=0.5):
     df["diff"] = df["close"] - df["target"]
 
     # 이동평균선 위이고, 고가가 목표가보다 많으면(한번이라도 목표가를 돌파하면) 구매
-    df = df[(df["close"] >= df["mean"]) & (df["high"] >= df["target"])]
+    signals = df[(df["close"] >= df["mean"]) & (df["high"] >= df["target"])]
 
-    return df
+    return signals
