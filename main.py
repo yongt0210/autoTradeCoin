@@ -30,11 +30,10 @@ app.include_router(api_router)
 @app.on_event("startup")
 async def startup():
     print("start service")
-
-    print(type(realserver))
-
+    
     # 스케줄러 실행
-    # scheduler.start()  
+    if realserver == True:
+        scheduler.start()  
 
 @app.get("/")
 def startProcess():
