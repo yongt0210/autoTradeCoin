@@ -6,6 +6,7 @@ from starlette.middleware.cors import CORSMiddleware
 from app.bithumb.public import bithumb_public
 from app.scheduler.trade import scheduler
 from app.router import api_router
+from config import realserver
 
 app = FastAPI(
     title="가상화폐 자동 투자",
@@ -30,8 +31,10 @@ app.include_router(api_router)
 async def startup():
     print("start service")
 
+    print(type(realserver))
+
     # 스케줄러 실행
-    scheduler.start()  
+    # scheduler.start()  
 
 @app.get("/")
 def startProcess():

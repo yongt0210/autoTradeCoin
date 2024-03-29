@@ -14,3 +14,5 @@ coin_list: list = ["BTC", "ETH", "XRP", "SOL"]
 
 # 빗썸 수수료(0.04%)
 rate : float = 0.0004
+
+realserver: bool = config("realserver") == "True"
