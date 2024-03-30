@@ -5,7 +5,7 @@ from typing import Any
 from fastapi import APIRouter
 
 from app.bithumb.public import bithumb_public
-from app.lib.function import generate_signals
+from app.lib.function import generate_signals, makeDataFrame
 from config import rate
 
 router = APIRouter()
@@ -17,8 +17,10 @@ async def get_common_code_root(
 ) -> list:
     data = bithumb_public.get_ohlcv_chart_data(code)
 
+    df = makeDataFrame(data)
+
     # 5일 이동평균선 
-    signal = generate_signals(data, window=5, k=0.5)
+    signal = generate_signals(df, window=5, k=0.5)
 
     # 초기 투자금액 백만원으로 설정
     money = 1000000
