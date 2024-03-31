@@ -33,7 +33,7 @@ def auto_trading():
 
 
 # 모든 코인 다 팔기
-async def sell_all_coins(my_account):
+def sell_all_coins(my_account):
     for coin in coin_list:
         key = "available_{coin}".format(coin=coin.lower())
 
@@ -43,13 +43,13 @@ async def sell_all_coins(my_account):
         if not units >= 0.0001:
             continue
         
-        await bithumb_private.sell_market_price(
+        bithumb_private.sell_market_price(
             units=units
             , order_currency=coin
         )
 
 # 추세를 보면서 코인 사기 
-async def check_and_buy_coins(my_account):
+def check_and_buy_coins(my_account):
     """
     추세를 보면서 
     """
@@ -66,10 +66,10 @@ async def check_and_buy_coins(my_account):
         if units >= 0.0001:
             continue
 
-        await get_coin_signals_units(coin, available_money)
+        get_coin_signals_units(coin, available_money)
 
 
-async def get_coin_signals_units(coin, money) -> Any:
+def get_coin_signals_units(coin, money) -> Any:
     today = get_now_time('%Y-%m-%d')
 
     data = bithumb_public.get_ohlcv_chart_data(coin, interval="24h")
